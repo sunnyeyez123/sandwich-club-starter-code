@@ -11,6 +11,8 @@ import com.squareup.picasso.Picasso;
 import com.udacity.sandwichclub.model.Sandwich;
 import com.udacity.sandwichclub.utils.JsonUtils;
 
+import java.util.List;
+
 public class DetailActivity extends AppCompatActivity {
 
     public static final String EXTRA_POSITION = "extra_position";
@@ -62,15 +64,38 @@ public class DetailActivity extends AppCompatActivity {
     private void populateUI(Sandwich sandwich) {
 
         TextView also_known_tv = findViewById(R.id.also_known_tv);
-        also_known_tv.setText(sandwich.getAlsoKnownAs().toString());
-        
-        TextView origin_tv =  findViewById(R.id.origin_tv);
+
+        List<String> aka = sandwich.getAlsoKnownAs();
+        String name = "";
+
+        if (aka.size() == 0) {
+            also_known_tv.setText("None");
+        } else {
+            for (int i = 0; i < aka.size(); i++) {
+                name += " " + aka.get(i);
+            }
+            also_known_tv.setText(name.trim());
+        }
+
+
+        TextView origin_tv = findViewById(R.id.origin_tv);
         origin_tv.setText(sandwich.getPlaceOfOrigin().toString());
 
         TextView ingredients_tv = findViewById(R.id.ingredients_tv);
-        ingredients_tv.setText(sandwich.getIngredients().toString());
 
-        TextView description_tv =  findViewById(R.id.description_tv);
+        List<String> ingredients = sandwich.getIngredients();
+        String ingredientList = "";
+
+        if (ingredients.size() == 0) {
+            ingredients_tv.setText("None");
+        } else {
+            for (int i = 0; i < ingredients.size(); i++) {
+                ingredientList += " " + '\n' + ingredients.get(i);
+            }
+            ingredients_tv.setText(ingredientList.trim());
+        }
+        
+        TextView description_tv = findViewById(R.id.description_tv);
         description_tv.setText(sandwich.getDescription().toString());
 
 
