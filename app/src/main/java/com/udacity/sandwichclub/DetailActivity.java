@@ -41,7 +41,6 @@ public class DetailActivity extends AppCompatActivity {
         Sandwich sandwich = JsonUtils.parseSandwichJson(json);
         if (sandwich == null) {
             // Sandwich data unavailable
-            Toast.makeText(this, "Test 3", Toast.LENGTH_SHORT).show();
 
             closeOnError();
             return;
@@ -63,8 +62,8 @@ public class DetailActivity extends AppCompatActivity {
     private void populateUI(Sandwich sandwich) {
 
         TextView also_known_tv = findViewById(R.id.also_known_tv);
-
         also_known_tv.setText(sandwich.getAlsoKnownAs().toString());
+        
         TextView origin_tv =  findViewById(R.id.origin_tv);
         origin_tv.setText(sandwich.getPlaceOfOrigin().toString());
 
