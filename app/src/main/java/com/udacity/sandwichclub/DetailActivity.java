@@ -64,7 +64,6 @@ public class DetailActivity extends AppCompatActivity {
     private void populateUI(Sandwich sandwich) {
 
         TextView also_known_tv = findViewById(R.id.also_known_tv);
-
         List<String> aka = sandwich.getAlsoKnownAs();
         String name = "";
 
@@ -79,7 +78,13 @@ public class DetailActivity extends AppCompatActivity {
 
 
         TextView origin_tv = findViewById(R.id.origin_tv);
-        origin_tv.setText(sandwich.getPlaceOfOrigin().toString());
+
+        if(sandwich.getPlaceOfOrigin().toString().length() ==0){
+            origin_tv.setText(R.string.no_place_of_origin);
+
+        }else{
+            origin_tv.setText(sandwich.getPlaceOfOrigin().toString());
+        }
 
         TextView ingredients_tv = findViewById(R.id.ingredients_tv);
 
@@ -94,9 +99,15 @@ public class DetailActivity extends AppCompatActivity {
             }
             ingredients_tv.setText(ingredientList.trim());
         }
-        
+
         TextView description_tv = findViewById(R.id.description_tv);
-        description_tv.setText(sandwich.getDescription().toString());
+
+        if(sandwich.getDescription().toString().length() ==0){
+            origin_tv.setText(R.string.no_description);
+
+        }else{
+            description_tv.setText(sandwich.getDescription().toString());
+        }
 
 
     }
