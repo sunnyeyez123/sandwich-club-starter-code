@@ -3,6 +3,7 @@ package com.udacity.sandwichclub;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -51,6 +52,8 @@ public class DetailActivity extends AppCompatActivity {
         populateUI(sandwich);
         Picasso.with(this)
                 .load(sandwich.getImage())
+                .placeholder(R.mipmap.ic_launcher)
+                .error(R.mipmap.ic_launcher)
                 .into(ingredientsIv);
 
         setTitle(sandwich.getMainName());
@@ -65,47 +68,44 @@ public class DetailActivity extends AppCompatActivity {
 
         TextView also_known_tv = findViewById(R.id.also_known_tv);
         List<String> aka = sandwich.getAlsoKnownAs();
-        String name = "";
 
         if (aka.size() == 0) {
-            also_known_tv.setText("None");
+            also_known_tv.setText(R.string.no_other_names);
         } else {
-            for (int i = 0; i < aka.size(); i++) {
-                name += " " + aka.get(i);
-            }
+
+            String name = TextUtils.join(", ", aka);
             also_known_tv.setText(name.trim());
         }
 
 
         TextView origin_tv = findViewById(R.id.origin_tv);
 
-        if(sandwich.getPlaceOfOrigin().toString().length() ==0){
+        if (sandwich.getPlaceOfOrigin().toString().length() == 0) {
             origin_tv.setText(R.string.no_place_of_origin);
 
-        }else{
+        } else {
             origin_tv.setText(sandwich.getPlaceOfOrigin().toString());
         }
 
         TextView ingredients_tv = findViewById(R.id.ingredients_tv);
 
         List<String> ingredients = sandwich.getIngredients();
-        String ingredientList = "";
 
         if (ingredients.size() == 0) {
-            ingredients_tv.setText("None");
+            ingredients_tv.setText(R.string.no_ingredients);
         } else {
-            for (int i = 0; i < ingredients.size(); i++) {
-                ingredientList += " " + '\n' + ingredients.get(i);
-            }
+
+            String ingredientList = TextUtils.join(" " + '\n', aka);
+
             ingredients_tv.setText(ingredientList.trim());
         }
 
         TextView description_tv = findViewById(R.id.description_tv);
 
-        if(sandwich.getDescription().toString().length() ==0){
+        if (sandwich.getDescription().toString().length() == 0) {
             origin_tv.setText(R.string.no_description);
 
-        }else{
+        } else {
             description_tv.setText(sandwich.getDescription().toString());
         }
 
