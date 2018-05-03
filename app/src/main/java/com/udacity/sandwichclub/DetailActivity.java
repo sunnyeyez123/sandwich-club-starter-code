@@ -31,6 +31,7 @@ public class DetailActivity extends AppCompatActivity {
         int position = intent.getIntExtra(EXTRA_POSITION, DEFAULT_POSITION);
         if (position == DEFAULT_POSITION) {
             // EXTRA_POSITION not found in intent
+
             closeOnError();
             return;
         }
@@ -40,6 +41,8 @@ public class DetailActivity extends AppCompatActivity {
         Sandwich sandwich = JsonUtils.parseSandwichJson(json);
         if (sandwich == null) {
             // Sandwich data unavailable
+            Toast.makeText(this, "Test 3", Toast.LENGTH_SHORT).show();
+
             closeOnError();
             return;
         }
@@ -59,16 +62,16 @@ public class DetailActivity extends AppCompatActivity {
 
     private void populateUI(Sandwich sandwich) {
 
-        TextView also_known_tv = (TextView) findViewById(R.id.also_known_tv);
+        TextView also_known_tv = findViewById(R.id.also_known_tv);
 
         also_known_tv.setText(sandwich.getAlsoKnownAs().toString());
-        TextView origin_tv = (TextView) findViewById(R.id.origin_tv);
+        TextView origin_tv =  findViewById(R.id.origin_tv);
         origin_tv.setText(sandwich.getPlaceOfOrigin().toString());
 
-        TextView ingredients_tv = (TextView) findViewById(R.id.ingredients_tv);
+        TextView ingredients_tv = findViewById(R.id.ingredients_tv);
         ingredients_tv.setText(sandwich.getIngredients().toString());
 
-        TextView description_tv = (TextView) findViewById(R.id.description_tv);
+        TextView description_tv =  findViewById(R.id.description_tv);
         description_tv.setText(sandwich.getDescription().toString());
 
 
