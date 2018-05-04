@@ -31,7 +31,7 @@ public class DetailActivity extends AppCompatActivity {
             closeOnError();
         }
 
-        int position = intent.getIntExtra(EXTRA_POSITION, DEFAULT_POSITION);
+        int position = intent != null ? intent.getIntExtra(EXTRA_POSITION, DEFAULT_POSITION) : 0;
         if (position == DEFAULT_POSITION) {
             // EXTRA_POSITION not found in intent
 
@@ -80,11 +80,11 @@ public class DetailActivity extends AppCompatActivity {
 
         TextView origin_tv = findViewById(R.id.origin_tv);
 
-        if (sandwich.getPlaceOfOrigin().toString().length() == 0) {
+        if (sandwich.getPlaceOfOrigin().length() == 0) {
             origin_tv.setText(R.string.no_place_of_origin);
 
         } else {
-            origin_tv.setText(sandwich.getPlaceOfOrigin().toString());
+            origin_tv.setText(sandwich.getPlaceOfOrigin());
         }
 
         TextView ingredients_tv = findViewById(R.id.ingredients_tv);
@@ -102,11 +102,11 @@ public class DetailActivity extends AppCompatActivity {
 
         TextView description_tv = findViewById(R.id.description_tv);
 
-        if (sandwich.getDescription().toString().length() == 0) {
+        if (sandwich.getDescription().length() == 0) {
             origin_tv.setText(R.string.no_description);
 
         } else {
-            description_tv.setText(sandwich.getDescription().toString());
+            description_tv.setText(sandwich.getDescription());
         }
 
 

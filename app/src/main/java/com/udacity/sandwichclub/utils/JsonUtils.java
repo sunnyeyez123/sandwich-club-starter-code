@@ -1,9 +1,6 @@
 package com.udacity.sandwichclub.utils;
 
-import android.app.Activity;
-import android.text.TextUtils;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.udacity.sandwichclub.model.Sandwich;
 
